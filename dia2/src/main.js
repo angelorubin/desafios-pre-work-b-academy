@@ -1,14 +1,14 @@
 const john = {
-  name: 'John',
-  surname: 'Doe',
+  name: "John",
+  surname: "Doe",
   age: 30,
-  hobbies: ['Surf', 'Design'],
-}
+  hobbies: ["Surf", "Design"],
+};
 
-const jane = Object.assign({}, john)
+const jane = Object.assign({}, john);
 
-jane.name = 'Jane'
+jane.name = "Jane";
 jane.hobbies = ["MuayThai", "Programming"];
 
-console.log('John:', john)
-console.log('Jane:', jane)
+console.log("John:", john);
+console.log("Jane:", jane);
