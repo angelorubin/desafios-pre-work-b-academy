@@ -17,18 +17,15 @@ inputName.addEventListener(
 
 // Resolução Desafio Dia 03 - Exercício 02
 const form = document.querySelector("#form");
+
 const containerColors = document.querySelector("#container-colors");
 containerColors.style.cssText = `
 	height : 100px;
 	padding : 2px;
 	display : flex;
-	@media(min-width: 800px){
-		display: flex;
-		flexWrap: wrap;
-		flex-direction: column;
-	}
 	margin-top : 10px;
 `;
+
 const colors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#800000"];
 
 const select = document.createElement("select");
@@ -48,7 +45,7 @@ for (let i = 0; i < 5; i++) {
 
 form.appendChild(select);
 
-inputName.after(select);
+// inputName.after(select);
 
 const getOptions = document.querySelectorAll("option");
 
