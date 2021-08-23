@@ -7,6 +7,42 @@
     <title>Dia 4</title>
   </head>
   <body>
+    <form class="car-form">
+      <input
+        class="car-form__input"
+        placeholder="url imagem carro"
+        name="image"
+        id="image"
+      />
+      <input
+        class="car-form__input"
+        placeholder="marca/modelo"
+        name="brandModel"
+        id="brandModel"
+      />
+      <input class="car-form__input" placeholder="ano" name="year" id="year" />
+      <input
+        class="car-form__input"
+        placeholder="placa"
+        name="plate"
+        id="plate"
+      />
+      <input
+        class="car-form__input"
+        placeholder="cor"
+        name="color"
+        id="color"
+      />
+      <button id="register-btn">cadastrar</button>
+    </form>
+    <br />
+    <table id="cars-table">
+      <th>Imagem Carro</th>
+      <th>Marca/Modelo</th>
+      <th>Ano</th>
+      <th>Placa</th>
+      <th>Cor</th>
+    </table>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
