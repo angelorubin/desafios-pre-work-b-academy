@@ -10,11 +10,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "B. Academy Cars API" });
+	res.json({ message: "B. Academy Cars API" });
 });
 
 app.use("/cars", routes);
 
 app.listen(port, () => {
-  console.log("Listening on port http://localhost:%d", port);
+	console.log("Listening on port http://localhost:%d", port);
 });
