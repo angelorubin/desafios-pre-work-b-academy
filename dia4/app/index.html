@@ -7,42 +7,51 @@
     <title>Dia 4</title>
   </head>
   <body>
-    <form class="car-form">
-      <input
-        class="car-form__input"
-        placeholder="url imagem carro"
-        name="image"
-        id="image"
-      />
-      <input
-        class="car-form__input"
-        placeholder="marca/modelo"
-        name="brandModel"
-        id="brandModel"
-      />
-      <input class="car-form__input" placeholder="ano" name="year" id="year" />
-      <input
-        class="car-form__input"
-        placeholder="placa"
-        name="plate"
-        id="plate"
-      />
-      <input
-        class="car-form__input"
-        placeholder="cor"
-        name="color"
-        id="color"
-      />
-      <button id="register-btn">cadastrar</button>
-    </form>
-    <br />
-    <table id="cars-table">
-      <th>Imagem Carro</th>
-      <th>Marca/Modelo</th>
-      <th>Ano</th>
-      <th>Placa</th>
-      <th>Cor</th>
-    </table>
+    <div id="container" class="container">
+      <h2>Cadastrar Carro</h2>
+      <form id="car-form" class="car-form">
+        <input
+          class="car-form__input"
+          placeholder="url imagem"
+          name="url"
+          id="url"
+        />
+        <input
+          class="car-form__input"
+          placeholder="marca/modelo"
+          name="brandModel"
+          id="brandModel"
+        />
+        <input
+          class="car-form__input"
+          placeholder="ano"
+          name="year"
+          id="year"
+        />
+        <input
+          class="car-form__input"
+          placeholder="placa"
+          name="plate"
+          id="plate"
+        />
+        <input
+          class="car-form__input"
+          placeholder="cor"
+          name="color"
+          id="color"
+        />
+        <button type="submit" class="car-form__btn" id="car-form__btn">
+          cadastrar
+        </button>
+      </form>
+      <table id="cars-table">
+        <th>Imagem Carro</th>
+        <th>Marca/Modelo</th>
+        <th>Ano</th>
+        <th>Placa</th>
+        <th>Cor</th>
+      </table>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
