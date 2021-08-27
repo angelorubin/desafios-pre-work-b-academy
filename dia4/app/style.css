@@ -15,3 +15,7 @@ body {
 .car-form__input {
   border: 1px solid #ccc;
 }
+
+.car-form__btn {
+  background: #ccc;
+}
