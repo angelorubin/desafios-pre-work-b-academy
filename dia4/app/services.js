@@ -1,6 +1,9 @@
-import { http } from "./config";
+import { http } from "./APIClient";
 
-// get all cars
-export const getCars = async () => {
-  return http.get("cars").then((cars) => cars.data);
-};
+export async function retrieveCars() {
+  return http("cars").then((cars) => cars);
+}
+
+export async function createCar(car) {
+  return http.post("cars", car).then((res) => res);
+}
