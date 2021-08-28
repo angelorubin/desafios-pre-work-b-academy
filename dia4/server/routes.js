@@ -2,10 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const upload = multer();
-const {
-	validationBody,
-	validationResult,
-} = require("./src/validations/carScheme");
+const { carSchema } = require("./src/validators");
 
 // Simulate Data Storage in Memory
 let data = {};
@@ -34,7 +31,7 @@ function areAllFieldsValid(body) {
 
 function checkAlreadyRegistered(req, res, next) {
 	if (typeof data[req.body.plate.toUpperCase()] !== "undefined") {
-		return res.status(400).json({
+		res.json({
 			error: true,
 			message: `Já existe um carro cadastrado com a placa ${req.body.plate}`,
 		});
@@ -42,7 +39,7 @@ function checkAlreadyRegistered(req, res, next) {
 	next();
 }
 
-router.post("/", validationBody, upload.none(), (req, res) => {
+router.post("/", carSchema, upload.none(), (req, res) => {
 	try {
 		const errors = validationResult(req);
 
@@ -68,7 +65,9 @@ router.post("/", validationBody, upload.none(), (req, res) => {
 		res.json({
 			message: `O carro com placa ${capitalizedPlate} foi cadastrado com sucesso`,
 		});
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 router.put("/:plate", checkBody, (req, res) => {
