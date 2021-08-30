@@ -1,6 +1,5 @@
 import "./style.css";
 import { createCar, retrieveCars } from "./services";
-import { checkElementExists } from "./utils";
 
 const container = document.querySelector("#container");
 const carForm = document.querySelector("#car-form");
@@ -69,7 +68,7 @@ const addRow = (car, table) => {
 carFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  retrieveCars().then((data) => console.log(data));
+  // retrieveCars().then((data) => console.log(data));
 
   carsTable.style.cssText = `display: none`;
 
@@ -77,7 +76,16 @@ carFormBtn.addEventListener("click", (e) => {
 
   const formData = Object.fromEntries(form);
 
-  createCar(formData).then((res) => console.log(res));
+  createCar(formData)
+    .then((res) => {
+      const { errors, status } = res.data;
+      if (status) {
+        console.log(status, errors);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
 
 // get all cars

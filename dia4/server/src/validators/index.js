@@ -1,5 +1,5 @@
-const carSchema = require("./car.validator");
+const car = require("./car.validator");
 
 module.exports = {
-	carSchema,
+  car,
 };
