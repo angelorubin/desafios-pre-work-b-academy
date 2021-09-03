@@ -1,5 +1,5 @@
 import "./style.css";
-import { createCar, retrieveCars } from "./services";
+import { createCar, retrieveCars } from "./src/components/home/services";
 
 const container = document.querySelector("#container");
 const carForm = document.querySelector("#car-form");
@@ -25,11 +25,11 @@ modals.forEach(function (trigger) {
   });
 });
 
-// method to hide element
+// hide element by ID
 const hideElementById = (id) =>
   (document.querySelector(`#${id}`).style.display = "none");
 
-// method to show element
+// show element by ID
 const showElementById = (id) =>
   (document.querySelector(`#${id}`).style.display = "");
 
@@ -39,7 +39,7 @@ container.style.cssText = `
   margin: 0.5rem;
 `;
 
-// method add row
+// add a row to a cars table
 const addRow = (car, table) => {
   let row = table.insertRow(-1);
 
@@ -65,12 +65,11 @@ const addRow = (car, table) => {
   cell5.appendChild(color);
 };
 
+// add a new car
 carFormBtn.addEventListener("click", (e) => {
   e.preventDefault();
 
-  // retrieveCars().then((data) => console.log(data));
-
-  carsTable.style.cssText = `display: none`;
+  // carsTable.style.cssText = `display: none`;
 
   const form = new FormData(carForm);
 
@@ -79,9 +78,11 @@ carFormBtn.addEventListener("click", (e) => {
   createCar(formData)
     .then((res) => {
       const { errors, status } = res.data;
-      if (status) {
-        console.log(status, errors);
+      if (errors) {
+        console.log(errors);
       }
+
+      console.log(status);
     })
     .catch((error) => {
       console.log(error);
