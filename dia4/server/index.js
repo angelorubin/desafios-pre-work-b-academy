@@ -17,5 +17,5 @@ app.get("/", (req, res) => {
 app.use("/", apiRouter);
 
 app.listen(port, () => {
-  console.log("Listening on port http://localhost:%d", port);
+	console.log("Listening on port http://localhost:%d", port);
 });
