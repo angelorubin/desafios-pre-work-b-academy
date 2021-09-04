@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as S from "./header";
-import { createCar } from "./services";
+import { createCar, retrieveCars } from "./services";
 
 export default function Home() {
-  const [] = useState();
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    retrieveCars().then((cars) => {
+      setCars(cars.data);
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,13 +23,13 @@ export default function Home() {
     const fields = Object.fromEntries(formData);
 
     createCar(fields)
-      .then((res) => {
-        const { errors, status } = res.data;
-        if (errors) {
-          console.log(errors);
+      .then((car) => {
+        const { errors, status } = car.data;
+        if (!status) {
+          alert(JSON.stringify(errors));
         }
 
-        console.log(status);
+        retrieveCars().then((cars) => setCars(cars.data));
       })
       .catch((error) => {
         console.log(error);
@@ -87,17 +93,36 @@ export default function Home() {
               cadastrar
             </button>
           </form>
-          <table id="cars-table">
-            <thead>
-              <tr>
-                <th>Imagem Carro</th>
-                <th>Marca/Modelo</th>
-                <th>Ano</th>
-                <th>Placa</th>
-                <th>Cor</th>
-              </tr>
-            </thead>
-          </table>
+          {cars.length > 0 ? (
+            <table id="cars-table">
+              <thead>
+                <tr>
+                  <th>Imagem Carro</th>
+                  <th>Marca/Modelo</th>
+                  <th>Ano</th>
+                  <th>Placa</th>
+                  <th>Cor</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cars.map((car) => {
+                  return (
+                    <tr key={car.plate}>
+                      <td>
+                        <img height={"100"} src={car.url} alt={car.plate} />
+                      </td>
+                      <td>{car.brandModel}</td>
+                      <td>{car.plate}</td>
+                      <td>{car.year}</td>
+                      <td>{car.color}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          ) : (
+            <h2>Nenhum carro encontrado.</h2>
+          )}
         </div>
       </S.Content>
     </S.Container>
