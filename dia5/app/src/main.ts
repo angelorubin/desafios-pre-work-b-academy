@@ -2,20 +2,27 @@ import "./style.css";
 import { get, post, del } from "./http";
 
 const url = "http://localhost:3333/cars";
-const form = document.querySelector('[data-js="cars-form"]');
-const table = document.querySelector('[data-js="table"]');
+const form = <HTMLFormElement>document.querySelector('[data-js="cars-form"]');
+const table = <HTMLTableElement>document.querySelector('[data-js="table"]');
 
-const getFormElement = (event: Event) => (elementName: string) => {
-  return event.target.elements[elementName];
+interface ImageData {
+  alt: string;
+  src: string;
+}
+
+interface Data {
+  image: string;
+  brandModel: string;
+  year: string;
+  plate: string;
+  color: string;
+}
+
+const getFormElement = (e: any) => (elementName: any) => {
+  return e.target.elements[elementName];
 };
 
-const elementTypes = {
-  image: createImage,
-  text: createText,
-  color: createColor,
-};
-
-function createImage(data) {
+function createImage(data: ImageData) {
   const td = document.createElement("td");
   const img = document.createElement("img");
   img.src = data.src;
@@ -25,13 +32,13 @@ function createImage(data) {
   return td;
 }
 
-function createText(value) {
+function createText(value: string) {
   const td = document.createElement("td");
   td.textContent = value;
   return td;
 }
 
-function createColor(value) {
+function createColor(value: string) {
   const td = document.createElement("td");
   const div = document.createElement("div");
   div.style.width = "100px";
@@ -68,10 +75,16 @@ form?.addEventListener("submit", async (e) => {
   createTableRow(data);
 
   form.reset();
-  // image.focus();
+  data.image.focus();
 });
 
-function createTableRow(data) {
+const elementTypes = {
+  image: createImage,
+  text: createText,
+  color: createColor,
+};
+
+function createTableRow(data: Data) {
   const elements = [
     { type: "image", value: { src: data.image, alt: data.brandModel } },
     { type: "text", value: data.brandModel },
@@ -99,8 +112,8 @@ function createTableRow(data) {
   table.appendChild(tr);
 }
 
-async function handleDelete(e) {
-  const button = e.target;
+async function handleDelete(e: Event) {
+  const button: any = e.target;
   const plate = button.dataset.plate;
 
   const result = await del(url, { plate });
@@ -110,7 +123,7 @@ async function handleDelete(e) {
     return;
   }
 
-  const tr = document.querySelector(`tr[data-plate="${plate}"]`);
+  const tr: any = document.querySelector(`tr[data-plate="${plate}"]`);
   table.removeChild(tr);
   button.removeEventListener("click", handleDelete);
 
@@ -124,7 +137,7 @@ function createNoCarRow() {
   const tr = document.createElement("tr");
   const td = document.createElement("td");
   const thsLength = document.querySelectorAll("table th").length;
-  td.setAttribute("colspan", thsLength);
+  td.setAttribute("colspan", thsLength.toString());
   td.textContent = "Nenhum carro encontrado";
 
   tr.dataset.js = "no-content";
