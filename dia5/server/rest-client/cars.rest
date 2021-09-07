@@ -1,0 +1,22 @@
+@hostname = http://localhost:
+@port = 3333
+@contentType = application/json
+@accessControlAllowOrigin = *
+
+// GET ALL CARS
+GET {{hostname}}{{port}}/cars
+
+###
+
+// CREATE A NEW CAR 
+POST {{hostname}}{{port}}/cars
+Content-Type: {{contentType}}
+Access-Control-Allow-Origin: {{accessControlAllowOrigin}}
+
+{
+  "url": "https://bit.ly/2WnKtkQ",
+  "brandModel": "volkswagen/voyage",
+  "year": "2013",
+  "plate": "b",
+  "color": "preto"
+}

@@ -1,0 +1,7 @@
+@hostname = http://localhost:
+@port = 3333
+@contentType = application/json
+@accessControlAllowOrigin = *
+
+// GET ALL USERS
+GET {{hostname}}{{port}}/users
